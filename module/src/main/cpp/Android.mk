@@ -6,7 +6,6 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/libs/$(TARGET_ARCH_ABI)/libdobby.a
 include $(PREBUILT_STATIC_LIBRARY)
 
 MAIN_LOCAL_PATH := $(call my-dir)
-LOCAL_C_INCLUDES += $(MAIN_LOCAL_PATH)
 
 include $(CLEAR_VARS)
 
@@ -21,6 +20,12 @@ LOCAL_LDFLAGS += -Wl,--gc-sections,--strip-all, -llog
 LOCAL_ARM_MODE := arm
 
 LOCAL_STATIC_LIBRARIES := libdobby
+
+# এখানে ImGui এবং Includes ফোল্ডারের পাথ যোগ করা হলো
+LOCAL_C_INCLUDES := $(MAIN_LOCAL_PATH) \
+                    $(MAIN_LOCAL_PATH)/Includes \
+                    $(MAIN_LOCAL_PATH)/ImGui \
+                    $(MAIN_LOCAL_PATH)/ImGui/backends
 
 LOCAL_SRC_FILES := main.cpp \
 				   KittyMemory/KittyMemory.cpp \
